@@ -1,43 +1,33 @@
+import 'package:flutter/material.dart';
 import 'package:thc/firebase/firebase.dart';
 
-class LiveStreamModel {
-  LiveStreamModel({
-    required this.liveStreamId,
+@immutable
+class ScheduledStream {
+  const ScheduledStream({
     required this.title,
-    required this.startTime,
-    required this.viewers,
-    required this.channelId,
     required this.directorId,
-    required this.directorName,
+    required this.startTime,
+    required this.duration,
   });
 
-  factory LiveStreamModel.fromJson(Json json) {
-    return LiveStreamModel(
-      liveStreamId: json['liveStreamId'],
+  factory ScheduledStream.fromJson(Json json) {
+    return ScheduledStream(
       title: json['title'],
-      startTime: json['startTime'], // as Timestamp.toDate(),
-      channelId: json['channelId'],
       directorId: json['directorId'],
-      directorName: json['directorName'],
-      viewers: json['viewers'],
+      startTime: json['startTime'],
+      duration: json['duration'],
     );
   }
 
-  String liveStreamId;
-  String title;
-  DateTime startTime;
-  int viewers;
-  String channelId;
-  String directorId;
-  String directorName;
+  final String title;
+  final String directorId;
+  final DateTime startTime;
+  final Duration duration;
 
   Json get json => {
-        'liveStreamId': liveStreamId,
         'title': title,
-        'startTime': startTime,
-        'channelId': channelId,
         'directorId': directorId,
-        'directorName': directorName,
-        'viewers': viewers,
+        'startTime': startTime,
+        'duration': duration,
       };
 }

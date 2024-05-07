@@ -3,6 +3,7 @@ import 'package:thc/firebase/src/user.dart';
 export 'src/user.dart';
 export 'src/user_type.dart';
 export 'src/firestore.dart';
+export 'src/scheduled_stream.dart';
 
 ThcUser get user => ThcUser.instance!;
 set user(ThcUser? updated) {

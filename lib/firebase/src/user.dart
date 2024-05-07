@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 import 'package:thc/firebase/firebase.dart';
@@ -171,7 +172,13 @@ class Director extends ThcUser {
     required super.name,
     super.email,
     super.registered = true,
+    this.scheduledStreams = const [],
   }) : super._(type: UserType.director);
+
+  CollectionReference<Json> get scheduleCollection =>
+      Firestore.users.doc(firestoreId).collection('scheduledStreams');
+
+  final Iterable<ScheduledStream> scheduledStreams;
 }
 
 class Admin extends ThcUser {
