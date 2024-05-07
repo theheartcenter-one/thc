@@ -2,21 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Google Calendar Example',
-      home: CreateEventScreen(),
-    );
-  }
-}
-
 class CreateEventScreen extends StatelessWidget {
+  const CreateEventScreen({super.key});
+
   static const queryString =
       'GET https://accounts.google.com/o/oauth2/v2/auth?response_type=code&state=state_parameter_passthrough_value&scope=https%3A//www.googleapis.com/auth/drive.file&redirect_uri=https%3A//oauth2.example.com/code&prompt=consent&include_granted_scopes=true';
 
@@ -68,13 +56,11 @@ class CreateEventScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Create Event'),
-      ),
+      appBar: AppBar(title: const Text('Create Event')),
       body: Center(
         child: ElevatedButton(
           onPressed: _createEvent,
-          child: Text('Create Event'),
+          child: const Text('Create Event'),
         ),
       ),
     );
