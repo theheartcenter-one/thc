@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:thc/utils/navigator.dart';
 
-class MyForm extends StatefulWidget {
-  const MyForm({super.key});
+class ScheduleEditor extends StatefulWidget {
+  const ScheduleEditor({super.key});
 
   @override
-  State<MyForm> createState() => _MyFormState();
+  State<ScheduleEditor> createState() => _ScheduleEditorState();
 }
 
-class _MyFormState extends State<MyForm> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>(); // A key for managing the form
+class _ScheduleEditorState extends State<ScheduleEditor> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _event = TextEditingController();
   final TextEditingController _startDate = TextEditingController();
   final TextEditingController _endDate = TextEditingController();
@@ -27,7 +27,7 @@ class _MyFormState extends State<MyForm> {
 
   @override
   Widget build(BuildContext context) {
-    final theGoodStuff = <Widget>[
+    final formContents = <Widget>[
       TextFormField(
         controller: _event,
         decoration: const InputDecoration(labelText: 'Event Title'),
@@ -148,6 +148,7 @@ class _MyFormState extends State<MyForm> {
         child: const Text('Submit'),
       ),
     ];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create Event Form'),
@@ -159,7 +160,7 @@ class _MyFormState extends State<MyForm> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              children: theGoodStuff,
+              children: formContents,
             ),
           ),
         ),
