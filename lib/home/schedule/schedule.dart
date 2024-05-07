@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thc/firebase/firebase.dart';
 import 'package:thc/home/home_screen.dart';
-import 'package:thc/home/schedule/edit_schedule/scheduler.dart';
+import 'package:thc/home/schedule/edit_schedule/schedule_editor.dart';
 import 'package:thc/utils/navigator.dart';
 import 'package:thc/utils/style_text.dart';
 import 'package:thc/utils/theme.dart';
