@@ -7,7 +7,7 @@ class ScheduledStream {
     required this.title,
     required this.directorId,
     required this.startTime,
-    required this.duration,
+    this.duration = const Duration(minutes: 45),
   });
 
   factory ScheduledStream.fromJson(Json json) {
