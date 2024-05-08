@@ -18,6 +18,7 @@ sealed class ThcUser {
     String? id,
     String? email,
     bool registered = true,
+    Iterable<ScheduledStream> scheduledStreams = const [],
   }) {
     assert((id ?? email) != null);
 
@@ -33,12 +34,14 @@ sealed class ThcUser {
           id: id,
           email: email,
           registered: registered,
+          scheduledStreams: scheduledStreams,
         ),
       UserType.admin => Admin(
           name: name,
           id: id,
           email: email,
           registered: registered,
+          scheduledStreams: scheduledStreams,
         ),
     };
   }
@@ -175,17 +178,28 @@ class Director extends ThcUser {
     this.scheduledStreams = const [],
   }) : super._(type: UserType.director);
 
+  /// Used in the [Admin] constructor below.
+  const Director._({
+    required super.id,
+    required super.name,
+    required super.type,
+    super.email,
+    super.registered = true,
+    this.scheduledStreams = const [],
+  }) : super._();
+
   CollectionReference<Json> get scheduleCollection =>
       Firestore.users.doc(firestoreId).collection('scheduledStreams');
 
   final Iterable<ScheduledStream> scheduledStreams;
 }
 
-class Admin extends ThcUser {
+class Admin extends Director {
   const Admin({
     required super.id,
     required super.name,
     super.email,
     super.registered = true,
+    super.scheduledStreams,
   }) : super._(type: UserType.admin);
 }
