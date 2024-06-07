@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+import 'package:agora_rtc_engine/agora_rtc_engine.dart';
+import 'package:thc/agora/broadcast_stream.dart';
 import 'package:thc/agora/livestream_button.dart';
 import 'package:thc/agora/livestream_overlay.dart';
 import 'package:thc/home/home_screen.dart';
@@ -91,14 +93,26 @@ class _StreamingCamera extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final enjoying = NavBarSelection.streaming(context) ? 'filming' : 'watching';
+    final stream = NavBarSelection.streaming(context);
+    ClientRoleType userType;
+    // final enjoying = NavBarSelection.streaming(context) ? 'filming': 'enjoying';
 
-    return Center(
-      child: Text(
-        "(pretend you're $enjoying a very cool livestream)",
-        style: const TextStyle(color: Colors.white70),
-      ),
-    );
+    // return Center(
+    //   child: Text(
+    //     "(pretend you're $enjoying a very cool livestream)",
+    //     style: const TextStyle(color: Colors.white70),
+    //   ),
+    // );
+
+    switch (stream) {
+      case true:
+        userType = ClientRoleType.clientRoleBroadcaster;
+      case false:
+        userType = ClientRoleType.clientRoleAudience;
+    }
+
+    return BroadcastStream(userType: userType);
+    // // return const BroadcastStream();
   }
 }
 
